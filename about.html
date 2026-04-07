@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us — EigenZ Solutions</title>
+  <meta name="description" content="Learn about EigenZ Solutions — our mission, values, and the team driving deep-tech innovation." />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* ===== MISSION ===== */
+    .mission-section {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .mission-visual {
+      position: relative;
+      aspect-ratio: 1;
+      max-width: 480px;
+    }
+    .mission-visual .viz-box {
+      width: 100%; height: 100%;
+      background: var(--clr-dark);
+      border-radius: var(--radius-xl);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+    }
+    .mission-visual .viz-box::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 60% 60% at 55% 45%, rgba(26,86,219,0.3) 0%, transparent 70%);
+    }
+    .mission-visual .viz-box svg {
+      position: relative;
+      z-index: 1;
+      opacity: 0.8;
+    }
+    .viz-float {
+      position: absolute;
+      padding: 14px 18px;
+      background: white;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-lg);
+      font-family: var(--font-display);
+      font-size: 0.8125rem;
+      font-weight: 700;
+    }
+    .viz-float.tl { top: -16px; left: -16px; color: var(--clr-accent); }
+    .viz-float.br { bottom: -16px; right: -16px; color: var(--clr-dark); }
+
+    /* ===== VALUES ===== */
+    .value-card {
+      padding: 28px;
+      border-left: 3px solid var(--clr-accent);
+      background: var(--clr-surface);
+      border-radius: 0 var(--radius-md) var(--radius-md) 0;
+      transition: all var(--transition);
+    }
+    .value-card:hover { box-shadow: var(--shadow-md); transform: translateX(4px); }
+    .value-card h4 {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--clr-dark);
+      margin-bottom: 8px;
+    }
+    .value-card p { font-size: 0.9rem; color: var(--clr-muted); line-height: 1.65; }
+
+    /* ===== TEAM ===== */
+    .team-card {
+      background: var(--clr-surface);
+      border: 1px solid var(--clr-border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      transition: all var(--transition);
+    }
+    .team-card:hover {
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-4px);
+      border-color: transparent;
+    }
+    .team-avatar {
+      height: 200px;
+      background: var(--clr-dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .team-avatar::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% 100%, rgba(26,86,219,0.3), transparent 65%);
+    }
+    .team-info { padding: 24px; }
+    .team-info h3 {
+      font-family: var(--font-display);
+      font-size: 1.0625rem;
+      font-weight: 700;
+      color: var(--clr-dark);
+      margin-bottom: 4px;
+    }
+    .team-info .role {
+      font-size: 0.8125rem;
+      color: var(--clr-accent);
+      font-weight: 500;
+      margin-bottom: 10px;
+      font-family: var(--font-display);
+    }
+    .team-info p { font-size: 0.875rem; color: var(--clr-muted); line-height: 1.6; }
+
+    /* ===== TIMELINE ===== */
+    .timeline { display: flex; flex-direction: column; gap: 0; }
+    .tl-item {
+      display: grid;
+      grid-template-columns: 100px 1px 1fr;
+      gap: 0 24px;
+      padding-bottom: 40px;
+    }
+    .tl-item:last-child { padding-bottom: 0; }
+    .tl-year {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--clr-accent);
+      padding-top: 2px;
+      text-align: right;
+    }
+    .tl-line {
+      position: relative;
+      background: var(--clr-border);
+    }
+    .tl-line::before {
+      content: '';
+      position: absolute;
+      top: 8px; left: 50%;
+      transform: translateX(-50%);
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: var(--clr-accent);
+    }
+    .tl-body { padding-top: 0; }
+    .tl-body h4 {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--clr-dark);
+      margin-bottom: 6px;
+    }
+    .tl-body p { font-size: 0.875rem; color: var(--clr-muted); line-height: 1.65; }
+
+    @media (max-width: 720px) {
+      .mission-section { grid-template-columns: 1fr; gap: 40px; }
+      .tl-item { grid-template-columns: 64px 1px 1fr; }
+      .tl-year { font-size: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="nav-logo">
+        <div class="logo-mark"></div>
+        <span class="logo-text">Eigen<span>Z</span></span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="solutions.html">Solutions</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <div class="nav-cta">
+        <a href="contact.html" class="btn btn-primary">Get in Touch</a>
+      </div>
+      <div class="hamburger"><span></span><span></span><span></span></div>
+    </div>
+  </nav>
+  <nav class="mobile-nav">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="services.html">Services</a>
+    <a href="solutions.html">Solutions</a>
+    <a href="contact.html">Contact</a>
+    <a href="contact.html" class="btn btn-primary">Get in Touch →</a>
+  </nav>
+
+  <!-- PAGE HERO -->
+  <section class="page-hero">
+    <div class="container">
+      <div class="breadcrumb">
+        <a href="index.html">Home</a>
+        <span class="sep">/</span>
+        <span>About</span>
+      </div>
+      <div class="label">Our Story</div>
+      <h1 class="animate">Built by engineers,<br>for engineers.</h1>
+      <p class="animate delay-1">EigenZ was founded on a simple conviction: the most important technology problems deserve teams who actually understand them — deeply, mathematically, and practically.</p>
+    </div>
+  </section>
+
+  <!-- MISSION -->
+  <section class="section" id="mission">
+    <div class="container">
+      <div class="mission-section">
+        <div>
+          <div class="label anim">Our Mission</div>
+          <h2 class="section-title anim delay-1">Making advanced technology accessible and deployable</h2>
+          <p class="section-sub anim delay-2">The world's hardest engineering problems sit at the intersection of theory and practice. EigenZ exists to close that gap — bringing research-calibre expertise to real enterprise and startup challenges.</p>
+          <p style="font-size: 0.9375rem; color: var(--clr-muted); margin-top: 16px; line-height: 1.7;" class="anim delay-3">We don't believe in surface-level consulting. Every engagement starts with genuine understanding of the problem, proceeds with rigorous technical design, and ends with solutions that actually work in production — not just in slides.</p>
+          <div style="margin-top: 32px;" class="anim delay-4">
+            <a href="contact.html" class="btn btn-primary">Work With Us →</a>
+          </div>
+        </div>
+        <div class="mission-visual anim delay-2">
+          <div class="viz-box">
+            <svg width="200" height="200" viewBox="0 0 200 200" fill="none">
+              <!-- Quantum-ish orbital diagram -->
+              <ellipse cx="100" cy="100" rx="80" ry="30" stroke="rgba(26,86,219,0.5)" stroke-width="1.5" fill="none"/>
+              <ellipse cx="100" cy="100" rx="80" ry="30" stroke="rgba(26,86,219,0.3)" stroke-width="1.5" fill="none" transform="rotate(60 100 100)"/>
+              <ellipse cx="100" cy="100" rx="80" ry="30" stroke="rgba(26,86,219,0.3)" stroke-width="1.5" fill="none" transform="rotate(120 100 100)"/>
+              <circle cx="100" cy="100" r="10" fill="rgba(26,86,219,0.9)"/>
+              <circle cx="100" cy="70" r="5" fill="#93aff7"/>
+              <circle cx="130" cy="113" r="4" fill="#93aff7" opacity="0.6"/>
+              <circle cx="55" cy="110" r="4" fill="#93aff7" opacity="0.6"/>
+              <!-- Grid lines -->
+              <line x1="20" y1="100" x2="180" y2="100" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+              <line x1="100" y1="20" x2="100" y2="180" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+            </svg>
+          </div>
+          <div class="viz-float tl">⚛️ Quantum-Ready</div>
+          <div class="viz-float br">🤖 AI-Native</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VALUES -->
+  <section class="section-sm" style="background: var(--clr-surface);">
+    <div class="container">
+      <div style="text-align: center; max-width: 500px; margin: 0 auto 52px;">
+        <div class="label" style="justify-content: center;">What We Stand For</div>
+        <h2 class="section-title anim">Our Core Values</h2>
+      </div>
+      <div class="grid-2" style="gap: 20px;">
+        <div class="value-card anim">
+          <h4>📐 Rigour Over Hype</h4>
+          <p>We insist on mathematical and engineering correctness. Every claim we make is backed by substance, not buzzwords.</p>
+        </div>
+        <div class="value-card anim delay-1">
+          <h4>🤝 Partnership Mindset</h4>
+          <p>Your problem becomes our problem. We're not vendors — we're technical co-owners of every project we take on.</p>
+        </div>
+        <div class="value-card anim delay-2">
+          <h4>🔬 Research-Informed Practice</h4>
+          <p>We stay at the frontier of academic research, translating the latest advances into practical engineering solutions.</p>
+        </div>
+        <div class="value-card anim delay-3">
+          <h4>🏗️ Built to Last</h4>
+          <p>We engineer for maintainability, scalability, and long-term reliability — not just demo-day impressiveness.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEAM -->
+  <section class="section" id="team">
+    <div class="container">
+      <div style="text-align: center; max-width: 520px; margin: 0 auto 56px;">
+        <div class="label" style="justify-content: center;">The People</div>
+        <h2 class="section-title anim">Expert team, real credentials</h2>
+        <p class="section-sub" style="margin: 12px auto 0;" class="anim delay-1">Our team combines academic depth with hands-on engineering experience across the most demanding technology domains.</p>
+      </div>
+      <div class="grid-4" style="grid-template-columns: repeat(3, 1fr);">
+        <div class="team-card anim">
+          <div class="team-avatar">🧑‍💻</div>
+          <div class="team-info">
+            <h3>Arjun Mehta</h3>
+            <div class="role">Founder & CEO</div>
+            <p>PhD in Computational Physics. Led ML systems at two unicorn startups before founding EigenZ.</p>
+          </div>
+        </div>
+        <div class="team-card anim delay-1">
+          <div class="team-avatar">👩‍🔬</div>
+          <div class="team-info">
+            <h3>Priya Nair</h3>
+            <div class="role">Head of Quantum & AI</div>
+            <p>Former quantum algorithms researcher. Specialises in hybrid quantum-classical optimisation and VQE.</p>
+          </div>
+        </div>
+        <div class="team-card anim delay-2">
+          <div class="team-avatar">🧑‍🏫</div>
+          <div class="team-info">
+            <h3>Rohan Das</h3>
+            <div class="role">Principal Data Engineer</div>
+            <p>10+ years building large-scale data platforms for finance and logistics at global scale.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TIMELINE -->
+  <section class="section-sm" style="background: var(--clr-surface);">
+    <div class="container">
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start;">
+        <div>
+          <div class="label anim">Our Journey</div>
+          <h2 class="section-title anim delay-1">From research lab to industry partner</h2>
+          <p class="section-sub anim delay-2">Six years of building, learning, and growing with every project we've taken on.</p>
+        </div>
+        <div class="timeline anim delay-2">
+          <div class="tl-item">
+            <div class="tl-year">2019</div>
+            <div class="tl-line"></div>
+            <div class="tl-body">
+              <h4>Founded</h4>
+              <p>EigenZ was established with a focus on AI/ML consulting for research institutions.</p>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-year">2021</div>
+            <div class="tl-line"></div>
+            <div class="tl-body">
+              <h4>Quantum Division Launched</h4>
+              <p>Expanded into quantum computing consulting, partnering with IIT and IISc research groups.</p>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-year">2022</div>
+            <div class="tl-line"></div>
+            <div class="tl-body">
+              <h4>Enterprise Scale</h4>
+              <p>Signed first Fortune 500-equivalent clients; data engineering practice scaled to 10+ team members.</p>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-year">2025</div>
+            <div class="tl-line"></div>
+            <div class="tl-body">
+              <h4>Today</h4>
+              <p>40+ delivered projects, 12+ verticals, and a growing suite of proprietary software solutions.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section-sm">
+    <div class="container">
+      <div class="cta-banner anim">
+        <div>
+          <h2>Join us, or work with us.</h2>
+          <p>Whether you're a potential client or an exceptional engineer looking for meaningful work — we'd love to hear from you.</p>
+        </div>
+        <div class="cta-banner-actions">
+          <a href="contact.html" class="btn btn-white">Get in Touch →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="nav-logo">
+            <div class="logo-mark"></div>
+            <span class="logo-text">Eigen<span>Z</span></span>
+          </a>
+          <p>Deep technology solutions for forward-thinking organisations. AI, Quantum, Data, and Software — engineered with precision.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul><li><a href="about.html">About Us</a></li><li><a href="about.html#team">Our Team</a></li><li><a href="about.html#mission">Mission</a></li></ul>
+        </div>
+        <div class="footer-col">
+          <h4>Offerings</h4>
+          <ul><li><a href="services.html">Services</a></li><li><a href="solutions.html">Solutions</a></li><li><a href="contact.html">Consulting</a></li></ul>
+        </div>
+        <div class="footer-col">
+          <h4>Connect</h4>
+          <ul><li><a href="contact.html">Contact Us</a></li><li><a href="mailto:hello@eigenz.in">hello@eigenz.in</a></li><li><a href="#">LinkedIn</a></li></ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2025 EigenZ Solutions. All rights reserved.</span>
+        <div class="socials"><a href="#" title="LinkedIn">in</a><a href="#" title="GitHub">gh</a><a href="#" title="Twitter">tw</a></div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>

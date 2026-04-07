@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact — EigenZ Solutions</title>
+  <meta name="description" content="Get in touch with EigenZ Solutions for deep tech consulting, project inquiries, and partnership opportunities." />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* ===== CONTACT LAYOUT ===== */
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 64px;
+      align-items: start;
+    }
+
+    /* ===== CONTACT INFO ===== */
+    .contact-info { position: sticky; top: calc(var(--nav-h) + 32px); }
+    .contact-info h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.5rem, 2.5vw, 2rem);
+      font-weight: 800;
+      color: var(--clr-dark);
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+      line-height: 1.2;
+    }
+    .contact-info p {
+      font-size: 0.9375rem;
+      color: var(--clr-muted);
+      line-height: 1.7;
+      margin-bottom: 36px;
+    }
+    .contact-methods { display: flex; flex-direction: column; gap: 16px; margin-bottom: 40px; }
+    .contact-method {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 18px 20px;
+      background: var(--clr-surface);
+      border: 1px solid var(--clr-border);
+      border-radius: var(--radius-md);
+      transition: all var(--transition);
+    }
+    .contact-method:hover {
+      border-color: var(--clr-accent);
+      box-shadow: var(--shadow-sm);
+    }
+    .contact-method .cm-icon {
+      width: 40px; height: 40px;
+      background: var(--clr-accent-light);
+      border-radius: var(--radius-sm);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+    .contact-method .cm-info { display: flex; flex-direction: column; }
+    .contact-method .cm-label {
+      font-size: 0.75rem;
+      font-family: var(--font-display);
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--clr-muted);
+    }
+    .contact-method .cm-value {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--clr-dark);
+      margin-top: 1px;
+    }
+
+    .hours-box {
+      background: var(--clr-dark);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      color: rgba(255,255,255,0.7);
+    }
+    .hours-box h4 {
+      font-family: var(--font-display);
+      font-size: 0.875rem;
+      font-weight: 700;
+      color: white;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .hours-box .hours-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.85rem;
+      padding: 7px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+    .hours-box .hours-row:last-child { border-bottom: none; }
+    .hours-box .hours-row .day { color: rgba(255,255,255,0.5); }
+    .hours-box .hours-row .time { color: rgba(255,255,255,0.85); font-weight: 500; }
+
+    /* ===== FORM CARD ===== */
+    .form-card {
+      background: var(--clr-surface);
+      border: 1px solid var(--clr-border);
+      border-radius: var(--radius-xl);
+      padding: 48px;
+    }
+    .form-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.375rem;
+      font-weight: 800;
+      color: var(--clr-dark);
+      letter-spacing: -0.02em;
+      margin-bottom: 6px;
+    }
+    .form-card > p {
+      font-size: 0.9rem;
+      color: var(--clr-muted);
+      margin-bottom: 32px;
+    }
+    .form-fields { display: flex; flex-direction: column; gap: 20px; }
+    .form-fields .submit-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .form-fields .submit-row .note {
+      font-size: 0.8rem;
+      color: var(--clr-muted);
+    }
+
+    /* ===== FAQ ===== */
+    .faq-section { background: var(--clr-surface); }
+    .faq-list { display: flex; flex-direction: column; gap: 0; }
+    .faq-item {
+      border-bottom: 1px solid var(--clr-border);
+    }
+    .faq-item:first-child { border-top: 1px solid var(--clr-border); }
+    .faq-q {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 0;
+      cursor: pointer;
+      font-family: var(--font-display);
+      font-size: 0.9375rem;
+      font-weight: 600;
+      color: var(--clr-dark);
+      gap: 16px;
+      user-select: none;
+    }
+    .faq-q .faq-icon {
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      background: var(--clr-accent-light);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px;
+      color: var(--clr-accent);
+      flex-shrink: 0;
+      transition: all var(--transition);
+    }
+    .faq-item.open .faq-q .faq-icon { transform: rotate(45deg); background: var(--clr-accent); color: white; }
+    .faq-a {
+      font-size: 0.9rem;
+      color: var(--clr-muted);
+      line-height: 1.72;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s cubic-bezier(0.4,0,0.2,1), padding 0.3s;
+    }
+    .faq-item.open .faq-a { max-height: 200px; padding-bottom: 20px; }
+
+    @media (max-width: 840px) {
+      .contact-layout { grid-template-columns: 1fr; gap: 40px; }
+      .contact-info { position: static; }
+      .form-card { padding: 28px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="nav-logo"><div class="logo-mark"></div><span class="logo-text">Eigen<span>Z</span></span></a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="solutions.html">Solutions</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <div class="nav-cta"><a href="contact.html" class="btn btn-primary">Get in Touch</a></div>
+      <div class="hamburger"><span></span><span></span><span></span></div>
+    </div>
+  </nav>
+  <nav class="mobile-nav">
+    <a href="index.html">Home</a><a href="about.html">About</a><a href="services.html">Services</a><a href="solutions.html">Solutions</a><a href="contact.html">Contact</a>
+    <a href="contact.html" class="btn btn-primary">Get in Touch →</a>
+  </nav>
+
+  <section class="page-hero">
+    <div class="container">
+      <div class="breadcrumb"><a href="index.html">Home</a><span class="sep">/</span><span>Contact</span></div>
+      <div class="label">Reach Out</div>
+      <h1 class="animate">Let's solve something<br>hard together.</h1>
+      <p class="animate delay-1">Whether you have a clear project scope or just a problem worth solving — reach out and we'll figure out the right path forward together.</p>
+    </div>
+  </section>
+
+  <!-- CONTACT MAIN -->
+  <section class="section">
+    <div class="container">
+      <div class="contact-layout">
+
+        <!-- INFO -->
+        <div class="contact-info anim">
+          <h2>We'd love to hear from you</h2>
+          <p>Our team typically responds within one business day. For urgent technical inquiries, use the email below directly.</p>
+          <div class="contact-methods">
+            <div class="contact-method">
+              <div class="cm-icon">✉️</div>
+              <div class="cm-info">
+                <span class="cm-label">Email</span>
+                <span class="cm-value">hello@eigenz.in</span>
+              </div>
+            </div>
+            <div class="contact-method">
+              <div class="cm-icon">📞</div>
+              <div class="cm-info">
+                <span class="cm-label">Phone</span>
+                <span class="cm-value">+91 98765 43210</span>
+              </div>
+            </div>
+            <div class="contact-method">
+              <div class="cm-icon">📍</div>
+              <div class="cm-info">
+                <span class="cm-label">Location</span>
+                <span class="cm-value">Bengaluru, India</span>
+              </div>
+            </div>
+            <div class="contact-method">
+              <div class="cm-icon">💼</div>
+              <div class="cm-info">
+                <span class="cm-label">LinkedIn</span>
+                <span class="cm-value">linkedin.com/company/eigenz</span>
+              </div>
+            </div>
+          </div>
+          <div class="hours-box">
+            <h4>Business Hours (IST)</h4>
+            <div class="hours-row"><span class="day">Monday – Friday</span><span class="time">9:00 AM – 7:00 PM</span></div>
+            <div class="hours-row"><span class="day">Saturday</span><span class="time">10:00 AM – 2:00 PM</span></div>
+            <div class="hours-row"><span class="day">Sunday</span><span class="time">Closed</span></div>
+          </div>
+        </div>
+
+        <!-- FORM -->
+        <div class="form-card anim delay-1">
+          <h3>Send us a message</h3>
+          <p>Fill in the details below and we'll get back to you with a thoughtful response.</p>
+          <form class="form-fields" id="contactForm">
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="fname">First Name</label>
+                <input type="text" id="fname" name="fname" placeholder="Arjun" required />
+              </div>
+              <div class="form-group">
+                <label for="lname">Last Name</label>
+                <input type="text" id="lname" name="lname" placeholder="Mehta" required />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="email">Work Email</label>
+              <input type="email" id="email" name="email" placeholder="arjun@company.com" required />
+            </div>
+            <div class="form-group">
+              <label for="company">Company / Organisation</label>
+              <input type="text" id="company" name="company" placeholder="Acme Corp" />
+            </div>
+            <div class="form-group">
+              <label for="service">Area of Interest</label>
+              <select id="service" name="service">
+                <option value="">Select a service...</option>
+                <option value="ai">AI / Machine Learning</option>
+                <option value="quantum">Quantum Computing</option>
+                <option value="data">Data Engineering & Analytics</option>
+                <option value="software">Custom Software Development</option>
+                <option value="consulting">General Consulting</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="message">Tell us about your challenge</label>
+              <textarea id="message" name="message" rows="5" placeholder="Describe your project, challenge, or question — the more detail, the better our initial response." required></textarea>
+            </div>
+            <div class="form-group">
+              <label for="budget">Approximate Budget Range</label>
+              <select id="budget" name="budget">
+                <option value="">Prefer not to say</option>
+                <option value="small">Under ₹5 Lakhs</option>
+                <option value="medium">₹5L – ₹25L</option>
+                <option value="large">₹25L – ₹1 Cr</option>
+                <option value="enterprise">₹1 Cr+</option>
+              </select>
+            </div>
+            <div class="submit-row">
+              <span class="note">🔒 Your information is never shared with third parties.</span>
+              <button type="submit" class="btn btn-primary">Send Message →</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section faq-section">
+    <div class="container">
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start;">
+        <div>
+          <div class="label anim">FAQ</div>
+          <h2 class="section-title anim delay-1">Common questions</h2>
+          <p class="section-sub anim delay-2">Quick answers to the questions we hear most often before an engagement begins.</p>
+        </div>
+        <div class="faq-list anim delay-2">
+          <div class="faq-item">
+            <div class="faq-q">How long does a typical engagement take?<div class="faq-icon">+</div></div>
+            <div class="faq-a">It depends on scope. Discovery and architecture phases typically take 2–4 weeks. Full project delivery ranges from 6 weeks for focused solutions to 6+ months for platform-scale work.</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q">Do you work with startups or only enterprises?<div class="faq-icon">+</div></div>
+            <div class="faq-a">Both. We've worked with early-stage startups needing technical co-founders, and large enterprises needing specialised deep-tech expertise. Budget and scope are assessed case by case.</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q">Is a free initial consultation available?<div class="faq-icon">+</div></div>
+            <div class="faq-a">Yes. We offer a free 30-minute technical consultation for all new inquiries. This lets us understand your problem and you to evaluate our approach — with no commitment.</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q">What industries do you have the most experience in?<div class="faq-icon">+</div></div>
+            <div class="faq-a">Finance, healthcare, logistics, energy, and deep-tech research sectors are our strongest verticals. We've also worked across education, manufacturing, and government domains.</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q">Do you offer retainer or ongoing support contracts?<div class="faq-icon">+</div></div>
+            <div class="faq-a">Yes. We have flexible retainer arrangements for ongoing technical advisory, model maintenance, or infrastructure support. Terms are tailored to each client relationship.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand"><a href="index.html" class="nav-logo"><div class="logo-mark"></div><span class="logo-text">Eigen<span>Z</span></span></a><p>Deep technology solutions for forward-thinking organisations. AI, Quantum, Data, and Software — engineered with precision.</p></div>
+        <div class="footer-col"><h4>Company</h4><ul><li><a href="about.html">About Us</a></li><li><a href="about.html#team">Our Team</a></li><li><a href="about.html#mission">Mission</a></li></ul></div>
+        <div class="footer-col"><h4>Offerings</h4><ul><li><a href="services.html">Services</a></li><li><a href="solutions.html">Solutions</a></li><li><a href="contact.html">Consulting</a></li></ul></div>
+        <div class="footer-col"><h4>Connect</h4><ul><li><a href="contact.html">Contact Us</a></li><li><a href="mailto:hello@eigenz.in">hello@eigenz.in</a></li><li><a href="#">LinkedIn</a></li></ul></div>
+      </div>
+      <div class="footer-bottom"><span>© 2025 EigenZ Solutions. All rights reserved.</span><div class="socials"><a href="#">in</a><a href="#">gh</a><a href="#">tw</a></div></div>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+    // FAQ accordion
+    document.querySelectorAll('.faq-q').forEach(q => {
+      q.addEventListener('click', () => {
+        const item = q.closest('.faq-item');
+        const isOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+        if (!isOpen) item.classList.add('open');
+      });
+    });
+  </script>
+</body>
+</html>

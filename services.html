@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Services — EigenZ Solutions</title>
+  <meta name="description" content="Explore EigenZ Solutions' full suite of deep-tech services in AI, Quantum Computing, Data Engineering and Software development." />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* ===== SERVICE BLOCKS ===== */
+    .service-block {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+      padding: 72px 0;
+      border-bottom: 1px solid var(--clr-border);
+    }
+    .service-block:last-child { border-bottom: none; }
+    .service-block.reverse { direction: rtl; }
+    .service-block.reverse > * { direction: ltr; }
+
+    .service-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    .service-badge .s-icon {
+      width: 52px; height: 52px;
+      border-radius: var(--radius-md);
+      background: var(--clr-accent-light);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 24px;
+    }
+    .service-badge .s-label {
+      font-family: var(--font-display);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--clr-accent);
+    }
+
+    .service-block h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.75rem, 3vw, 2.25rem);
+      font-weight: 800;
+      color: var(--clr-dark);
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+      line-height: 1.15;
+    }
+    .service-block p {
+      font-size: 0.9375rem;
+      color: var(--clr-muted);
+      line-height: 1.72;
+      margin-bottom: 20px;
+    }
+    .capability-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 28px;
+    }
+    .capability-list li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.9rem;
+      color: var(--clr-text);
+    }
+    .capability-list li::before {
+      content: '';
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--clr-accent);
+      flex-shrink: 0;
+    }
+
+    .service-visual {
+      background: var(--clr-dark);
+      border-radius: var(--radius-xl);
+      aspect-ratio: 4/3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .service-visual::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 60% 60% at 50% 50%, rgba(26,86,219,0.22) 0%, transparent 70%);
+    }
+    .service-visual .vis-inner {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 32px;
+    }
+    .service-visual .vis-inner .big-ico { font-size: 64px; margin-bottom: 16px; }
+    .service-visual .vis-inner .vis-label {
+      font-family: var(--font-display);
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.5);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .service-visual .vis-chips {
+      position: absolute;
+      bottom: 24px; left: 50%; transform: translateX(-50%);
+      display: flex; gap: 8px; flex-wrap: wrap; justify-content: center;
+      z-index: 1;
+    }
+    .vis-chip {
+      padding: 5px 12px;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 999px;
+      font-size: 0.72rem;
+      font-family: var(--font-display);
+      font-weight: 600;
+      color: rgba(255,255,255,0.7);
+    }
+
+    /* ===== ADD-ONS ===== */
+    .addon-section {
+      background: var(--clr-surface);
+      padding: 80px 0;
+    }
+    .addon-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .addon-card {
+      padding: 28px;
+      background: var(--clr-bg);
+      border: 1px solid var(--clr-border);
+      border-radius: var(--radius-lg);
+      transition: all var(--transition);
+    }
+    .addon-card:hover {
+      box-shadow: var(--shadow-md);
+      border-color: var(--clr-accent);
+      transform: translateY(-2px);
+    }
+    .addon-card .a-icon {
+      font-size: 28px;
+      margin-bottom: 14px;
+    }
+    .addon-card h4 {
+      font-family: var(--font-display);
+      font-size: 0.9375rem;
+      font-weight: 700;
+      color: var(--clr-dark);
+      margin-bottom: 8px;
+    }
+    .addon-card p {
+      font-size: 0.875rem;
+      color: var(--clr-muted);
+      line-height: 1.6;
+    }
+
+    @media (max-width: 840px) {
+      .service-block, .service-block.reverse {
+        grid-template-columns: 1fr;
+        gap: 36px;
+        direction: ltr;
+      }
+      .addon-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 540px) {
+      .addon-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="nav-logo">
+        <div class="logo-mark"></div>
+        <span class="logo-text">Eigen<span>Z</span></span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="solutions.html">Solutions</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <div class="nav-cta">
+        <a href="contact.html" class="btn btn-primary">Get in Touch</a>
+      </div>
+      <div class="hamburger"><span></span><span></span><span></span></div>
+    </div>
+  </nav>
+  <nav class="mobile-nav">
+    <a href="index.html">Home</a><a href="about.html">About</a><a href="services.html">Services</a><a href="solutions.html">Solutions</a><a href="contact.html">Contact</a>
+    <a href="contact.html" class="btn btn-primary">Get in Touch →</a>
+  </nav>
+
+  <section class="page-hero">
+    <div class="container">
+      <div class="breadcrumb"><a href="index.html">Home</a><span class="sep">/</span><span>Services</span></div>
+      <div class="label">What We Do</div>
+      <h1 class="animate">Deep-tech expertise,<br>end-to-end delivery.</h1>
+      <p class="animate delay-1">From initial architecture to production deployment, EigenZ provides complete service coverage across AI, Quantum Computing, Data Engineering, and custom Software development.</p>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="section">
+    <div class="container">
+
+      <!-- AI / ML -->
+      <div class="service-block">
+        <div class="anim">
+          <div class="service-badge">
+            <div class="s-icon">🤖</div>
+            <span class="s-label">AI / Machine Learning</span>
+          </div>
+          <h2>Intelligent Systems Engineering</h2>
+          <p>We design, build, and deploy machine learning systems grounded in solid statistical theory and engineering rigour — from data pipelines to model serving at scale.</p>
+          <ul class="capability-list">
+            <li>Custom model development: NLP, CV, tabular, time-series</li>
+            <li>LLM fine-tuning and Retrieval-Augmented Generation (RAG)</li>
+            <li>MLOps pipeline setup — training, evaluation, retraining</li>
+            <li>Model inference API design and deployment (Docker/K8s)</li>
+            <li>AI system auditing and explainability reports</li>
+          </ul>
+          <a href="contact.html" class="btn btn-primary">Discuss Your AI Project →</a>
+        </div>
+        <div class="service-visual anim delay-1">
+          <div class="vis-inner">
+            <div class="big-ico">🧠</div>
+            <div class="vis-label">AI & Machine Learning</div>
+          </div>
+          <div class="vis-chips">
+            <span class="vis-chip">PyTorch</span>
+            <span class="vis-chip">TensorFlow</span>
+            <span class="vis-chip">Transformers</span>
+            <span class="vis-chip">MLflow</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- QUANTUM -->
+      <div class="service-block reverse">
+        <div class="anim">
+          <div class="service-badge">
+            <div class="s-icon">⚛️</div>
+            <span class="s-label">Quantum Computing</span>
+          </div>
+          <h2>Quantum Algorithm Design & Consulting</h2>
+          <p>Navigate the quantum landscape with confidence. We help enterprises understand, plan for, and prototype quantum computing solutions on real hardware and simulators.</p>
+          <ul class="capability-list">
+            <li>Quantum circuit design (gate-model and adiabatic)</li>
+            <li>Variational algorithms: VQE, QAOA for optimisation</li>
+            <li>Quantum machine learning (QML) prototyping</li>
+            <li>Post-quantum cryptography readiness assessment</li>
+            <li>Hybrid classical-quantum system architecture</li>
+          </ul>
+          <a href="contact.html" class="btn btn-primary">Explore Quantum Consulting →</a>
+        </div>
+        <div class="service-visual anim delay-1">
+          <div class="vis-inner">
+            <div class="big-ico">⚛️</div>
+            <div class="vis-label">Quantum Computing</div>
+          </div>
+          <div class="vis-chips">
+            <span class="vis-chip">Qiskit</span>
+            <span class="vis-chip">Cirq</span>
+            <span class="vis-chip">PennyLane</span>
+            <span class="vis-chip">IBM Quantum</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- DATA ENGINEERING -->
+      <div class="service-block">
+        <div class="anim">
+          <div class="service-badge">
+            <div class="s-icon">📊</div>
+            <span class="s-label">Data Engineering</span>
+          </div>
+          <h2>Data Platforms & Analytics at Scale</h2>
+          <p>Turn raw data into a strategic asset. We architect and build the full data stack — ingestion, transformation, storage, and visualisation — designed to scale with your growth.</p>
+          <ul class="capability-list">
+            <li>Data lake and warehouse design (Snowflake, BigQuery, Redshift)</li>
+            <li>Streaming pipelines: Kafka, Flink, Spark Structured Streaming</li>
+            <li>ELT/ETL orchestration with dbt, Airflow, Prefect</li>
+            <li>BI dashboards and self-serve analytics (Metabase, Superset)</li>
+            <li>Data quality monitoring and observability frameworks</li>
+          </ul>
+          <a href="contact.html" class="btn btn-primary">Build Your Data Platform →</a>
+        </div>
+        <div class="service-visual anim delay-1">
+          <div class="vis-inner">
+            <div class="big-ico">📈</div>
+            <div class="vis-label">Data Engineering</div>
+          </div>
+          <div class="vis-chips">
+            <span class="vis-chip">Spark</span>
+            <span class="vis-chip">Kafka</span>
+            <span class="vis-chip">dbt</span>
+            <span class="vis-chip">Airflow</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- SOFTWARE -->
+      <div class="service-block reverse">
+        <div class="anim">
+          <div class="service-badge">
+            <div class="s-icon">💻</div>
+            <span class="s-label">Software Solutions</span>
+          </div>
+          <h2>Custom Software Engineering</h2>
+          <p>From backend APIs to full-stack applications and embedded systems — we engineer software that is performant, reliable, and built to outlast the projects that birthed it.</p>
+          <ul class="capability-list">
+            <li>Backend API development: Python, Go, Node.js, Rust</li>
+            <li>Microservices and distributed system architecture</li>
+            <li>Full-stack web applications (React, Next.js)</li>
+            <li>Embedded and real-time systems software</li>
+            <li>Legacy system modernisation and cloud migration</li>
+          </ul>
+          <a href="contact.html" class="btn btn-primary">Start Your Build →</a>
+        </div>
+        <div class="service-visual anim delay-1">
+          <div class="vis-inner">
+            <div class="big-ico">⚙️</div>
+            <div class="vis-label">Software Engineering</div>
+          </div>
+          <div class="vis-chips">
+            <span class="vis-chip">Python</span>
+            <span class="vis-chip">Go</span>
+            <span class="vis-chip">React</span>
+            <span class="vis-chip">Kubernetes</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ADD-ONS -->
+  <section class="addon-section">
+    <div class="container">
+      <div style="text-align: center; max-width: 520px; margin: 0 auto 52px;">
+        <div class="label" style="justify-content: center;">Additional Offerings</div>
+        <h2 class="section-title anim">Complementary Services</h2>
+      </div>
+      <div class="addon-grid">
+        <div class="addon-card anim"><div class="a-icon">🔍</div><h4>Technical Due Diligence</h4><p>Independent assessment of codebases, architectures, and technical teams for investors and acquirers.</p></div>
+        <div class="addon-card anim delay-1"><div class="a-icon">📋</div><h4>Technology Roadmapping</h4><p>Strategic multi-year technology planning aligned to business goals and emerging tech trajectories.</p></div>
+        <div class="addon-card anim delay-2"><div class="a-icon">🎓</div><h4>Training & Workshops</h4><p>Hands-on workshops in AI/ML, quantum computing fundamentals, and modern data engineering for your team.</p></div>
+        <div class="addon-card anim delay-3"><div class="a-icon">🔒</div><h4>Security Architecture Review</h4><p>Threat modelling, secure design review, and post-quantum cryptography readiness assessment.</p></div>
+        <div class="addon-card anim delay-4"><div class="a-icon">☁️</div><h4>Cloud Architecture</h4><p>AWS, GCP, and Azure infrastructure design, cost optimisation, and migration planning.</p></div>
+        <div class="addon-card anim delay-5"><div class="a-icon">📡</div><h4>Research Collaboration</h4><p>Joint R&D with academic institutions, grant-funded projects, and applied research publishing.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section-sm">
+    <div class="container">
+      <div class="cta-banner anim">
+        <div>
+          <h2>Not sure which service fits your challenge?</h2>
+          <p>Book a free 30-minute technical consultation and we'll help you figure it out.</p>
+        </div>
+        <div class="cta-banner-actions">
+          <a href="contact.html" class="btn btn-white">Book Free Consultation →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="nav-logo"><div class="logo-mark"></div><span class="logo-text">Eigen<span>Z</span></span></a>
+          <p>Deep technology solutions for forward-thinking organisations. AI, Quantum, Data, and Software — engineered with precision.</p>
+        </div>
+        <div class="footer-col"><h4>Company</h4><ul><li><a href="about.html">About Us</a></li><li><a href="about.html#team">Our Team</a></li><li><a href="about.html#mission">Mission</a></li></ul></div>
+        <div class="footer-col"><h4>Offerings</h4><ul><li><a href="services.html">Services</a></li><li><a href="solutions.html">Solutions</a></li><li><a href="contact.html">Consulting</a></li></ul></div>
+        <div class="footer-col"><h4>Connect</h4><ul><li><a href="contact.html">Contact Us</a></li><li><a href="mailto:hello@eigenz.in">hello@eigenz.in</a></li><li><a href="#">LinkedIn</a></li></ul></div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2025 EigenZ Solutions. All rights reserved.</span>
+        <div class="socials"><a href="#">in</a><a href="#">gh</a><a href="#">tw</a></div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>

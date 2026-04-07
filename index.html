@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EigenZ Solutions — Deep Tech & IT Expertise</title>
+  <meta name="description" content="EigenZ Solutions delivers cutting-edge deep tech consulting in AI/ML, Quantum Computing, and Data Engineering." />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* ===== HERO ===== */
+    .hero {
+      min-height: 100vh;
+      background: var(--clr-dark);
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      padding-top: var(--nav-h);
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 55% 70% at 75% 50%, rgba(26,86,219,0.20) 0%, transparent 65%),
+        radial-gradient(ellipse 35% 35% at 10% 80%, rgba(26,86,219,0.10) 0%, transparent 60%),
+        radial-gradient(ellipse 30% 30% at 90% 10%, rgba(26,86,219,0.08) 0%, transparent 60%);
+    }
+    .hero-grid-overlay {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+      background-size: 48px 48px;
+      mask-image: radial-gradient(ellipse 80% 80% at 60% 50%, black 0%, transparent 80%);
+    }
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 700px;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 14px 7px 7px;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 999px;
+      margin-bottom: 28px;
+    }
+    .hero-badge .dot {
+      width: 8px; height: 8px;
+      background: #22d3ee;
+      border-radius: 50%;
+      box-shadow: 0 0 8px #22d3ee;
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+    .hero-badge span {
+      font-family: var(--font-display);
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.7);
+      letter-spacing: 0.04em;
+    }
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.8rem, 6vw, 4.5rem);
+      font-weight: 800;
+      color: var(--clr-white);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      margin-bottom: 24px;
+    }
+    .hero h1 .accent { color: var(--clr-accent); }
+    .hero h1 .underline-accent {
+      position: relative;
+    }
+    .hero h1 .underline-accent::after {
+      content: '';
+      position: absolute;
+      bottom: 2px; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--clr-accent), transparent);
+      border-radius: 2px;
+    }
+    .hero p {
+      font-size: 1.125rem;
+      color: rgba(255,255,255,0.58);
+      line-height: 1.72;
+      margin-bottom: 36px;
+      max-width: 560px;
+    }
+    .hero-actions { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+    .hero-scroll {
+      position: absolute;
+      bottom: 36px; left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      color: rgba(255,255,255,0.35);
+      font-family: var(--font-display);
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      z-index: 1;
+    }
+    .hero-scroll .arrow {
+      width: 1px;
+      height: 32px;
+      background: linear-gradient(to bottom, rgba(255,255,255,0.35), transparent);
+      animation: scrollLine 1.8s ease-in-out infinite;
+    }
+    @keyframes scrollLine {
+      0% { opacity: 1; transform: scaleY(0); transform-origin: top; }
+      50% { opacity: 1; transform: scaleY(1); transform-origin: top; }
+      100% { opacity: 0; transform: scaleY(1); transform-origin: bottom; }
+    }
+
+    /* ===== LOGOS ===== */
+    .logos-section {
+      background: var(--clr-surface);
+      padding: 40px 0;
+      border-bottom: 1px solid var(--clr-border);
+    }
+    .logos-label {
+      text-align: center;
+      font-family: var(--font-display);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--clr-muted);
+      margin-bottom: 28px;
+    }
+    .logo-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 48px;
+      flex-wrap: wrap;
+    }
+    .logo-item {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--clr-border);
+      letter-spacing: -0.01em;
+      transition: color var(--transition);
+    }
+    .logo-item:hover { color: var(--clr-muted); }
+
+    /* ===== FEATURES ===== */
+    .features-intro {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .features-right { display: flex; flex-direction: column; gap: 16px; }
+    .feature-row {
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+      padding: 20px;
+      border-radius: var(--radius-md);
+      transition: background var(--transition);
+    }
+    .feature-row:hover { background: var(--clr-surface); }
+    .feature-row .ico {
+      width: 40px; height: 40px; min-width: 40px;
+      background: var(--clr-accent-light);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px;
+    }
+    .feature-row h4 {
+      font-family: var(--font-display);
+      font-size: 0.9375rem;
+      font-weight: 700;
+      color: var(--clr-dark);
+      margin-bottom: 4px;
+    }
+    .feature-row p {
+      font-size: 0.875rem;
+      color: var(--clr-muted);
+      line-height: 1.6;
+    }
+
+    /* ===== DOMAINS ===== */
+    .domains-section { background: var(--clr-dark); }
+    .domains-section .section-title,
+    .domains-section .label { color: rgba(255,255,255,0.9); }
+    .domains-section .label { color: rgba(255,255,255,0.45); }
+    .domains-section .label::before { background: rgba(255,255,255,0.45); }
+    .domains-section .section-sub { color: rgba(255,255,255,0.45); }
+    .domain-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      transition: all var(--transition);
+    }
+    .domain-card:hover {
+      background: rgba(255,255,255,0.07);
+      border-color: rgba(26,86,219,0.5);
+      box-shadow: 0 8px 32px rgba(26,86,219,0.15);
+    }
+    .domain-card .card-icon { background: rgba(26,86,219,0.2); }
+    .domain-card h3 { color: rgba(255,255,255,0.9); }
+    .domain-card p { color: rgba(255,255,255,0.45); }
+    .domain-card .tag { background: rgba(26,86,219,0.25); color: #93aff7; }
+
+    /* ===== HOW IT WORKS ===== */
+    .process-steps {
+      display: flex;
+      gap: 0;
+      position: relative;
+    }
+    .process-steps::before {
+      content: '';
+      position: absolute;
+      top: 28px;
+      left: 60px; right: 60px;
+      height: 1px;
+      background: var(--clr-border);
+      z-index: 0;
+    }
+    .step {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 0 20px;
+      position: relative;
+      z-index: 1;
+    }
+    .step-num {
+      width: 56px; height: 56px;
+      border-radius: 50%;
+      background: var(--clr-surface);
+      border: 2px solid var(--clr-border);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-display);
+      font-size: 1.125rem;
+      font-weight: 800;
+      color: var(--clr-accent);
+      margin-bottom: 20px;
+      transition: all var(--transition);
+    }
+    .step:hover .step-num {
+      background: var(--clr-accent);
+      color: white;
+      border-color: var(--clr-accent);
+      box-shadow: 0 4px 16px rgba(26,86,219,0.3);
+    }
+    .step h4 {
+      font-family: var(--font-display);
+      font-size: 0.9375rem;
+      font-weight: 700;
+      color: var(--clr-dark);
+      margin-bottom: 8px;
+    }
+    .step p { font-size: 0.875rem; color: var(--clr-muted); line-height: 1.6; }
+
+    /* ===== CTA BANNER ===== */
+    .cta-banner {
+      background: var(--clr-accent);
+      border-radius: var(--radius-xl);
+      padding: 64px 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 32px;
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-banner::before {
+      content: '';
+      position: absolute;
+      right: -60px; top: -60px;
+      width: 280px; height: 280px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.06);
+    }
+    .cta-banner::after {
+      content: '';
+      position: absolute;
+      right: 40px; bottom: -80px;
+      width: 180px; height: 180px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.04);
+    }
+    .cta-banner h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.6rem, 3vw, 2.25rem);
+      font-weight: 800;
+      color: white;
+      letter-spacing: -0.02em;
+      position: relative;
+    }
+    .cta-banner p {
+      color: rgba(255,255,255,0.7);
+      margin-top: 8px;
+      font-size: 1rem;
+      position: relative;
+    }
+    .cta-banner-actions { display: flex; gap: 12px; flex-shrink: 0; position: relative; }
+    .btn-white {
+      background: white;
+      color: var(--clr-accent);
+      font-family: var(--font-display);
+      font-size: 0.875rem;
+      font-weight: 700;
+    }
+    .btn-white:hover { background: var(--clr-accent-light); }
+
+    @media (max-width: 768px) {
+      .features-intro { grid-template-columns: 1fr; gap: 40px; }
+      .process-steps { flex-direction: column; gap: 24px; }
+      .process-steps::before { display: none; }
+      .cta-banner { flex-direction: column; padding: 40px 28px; }
+      .cta-banner-actions { flex-wrap: wrap; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="nav-logo">
+        <div class="logo-mark"></div>
+        <span class="logo-text">Eigen<span>Z</span></span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="solutions.html">Solutions</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <div class="nav-cta">
+        <a href="contact.html" class="btn btn-primary">Get in Touch</a>
+      </div>
+      <div class="hamburger" id="hamburger">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </nav>
+  <nav class="mobile-nav" id="mobileNav">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="services.html">Services</a>
+    <a href="solutions.html">Solutions</a>
+    <a href="contact.html">Contact</a>
+    <a href="contact.html" class="btn btn-primary">Get in Touch →</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-grid-overlay"></div>
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-badge animate">
+          <span class="dot"></span>
+          <span>Deep Tech · AI · Quantum · Data</span>
+        </div>
+        <h1 class="animate delay-1">
+          Engineering the<br>
+          <span class="underline-accent">Intelligent</span><br>
+          <span class="accent">Enterprise</span>
+        </h1>
+        <p class="animate delay-2">
+          EigenZ Solutions delivers advanced IT consulting, AI systems, quantum-ready architecture, and data engineering — transforming complex problems into measurable business outcomes.
+        </p>
+        <div class="hero-actions animate delay-3">
+          <a href="services.html" class="btn btn-primary">Explore Services →</a>
+          <a href="about.html" class="btn btn-ghost-white">About EigenZ</a>
+        </div>
+      </div>
+    </div>
+    <div class="hero-scroll">
+      <div class="arrow"></div>
+      Scroll
+    </div>
+  </section>
+
+  <!-- TRUSTED BY -->
+  <section class="logos-section">
+    <div class="container">
+      <p class="logos-label">Trusted by teams in research, enterprise & startups</p>
+      <div class="logo-row">
+        <span class="logo-item">Quantova Labs</span>
+        <span class="logo-item">NexGen Systems</span>
+        <span class="logo-item">Stratosphere AI</span>
+        <span class="logo-item">DataForge Inc.</span>
+        <span class="logo-item">Axiom Networks</span>
+        <span class="logo-item">CortexCore</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="section">
+    <div class="container">
+      <div class="features-intro">
+        <div>
+          <div class="label anim">Why EigenZ</div>
+          <h2 class="section-title anim delay-1">Where deep expertise meets <br>real-world delivery</h2>
+          <p class="section-sub anim delay-2">We bridge the gap between cutting-edge research and practical engineering — bringing rigour and speed to your most complex technology challenges.</p>
+          <div style="margin-top: 36px;" class="anim delay-3">
+            <a href="about.html" class="btn btn-outline">Our Story →</a>
+          </div>
+          <div class="grid-4" style="margin-top: 48px; grid-template-columns: repeat(2, 1fr); gap: 16px;">
+            <div class="stat-pill anim delay-2"><span class="stat-num">40+</span><span class="stat-label">Projects Delivered</span></div>
+            <div class="stat-pill anim delay-3"><span class="stat-num">12+</span><span class="stat-label">Industry Verticals</span></div>
+            <div class="stat-pill anim delay-4"><span class="stat-num">98%</span><span class="stat-label">Client Retention</span></div>
+            <div class="stat-pill anim delay-5"><span class="stat-num">6+</span><span class="stat-label">Years Experience</span></div>
+          </div>
+        </div>
+        <div class="features-right">
+          <div class="feature-row anim">
+            <div class="ico">🧠</div>
+            <div>
+              <h4>Research-Grade AI</h4>
+              <p>We deploy ML systems built on solid mathematical foundations — not just off-the-shelf wrappers.</p>
+            </div>
+          </div>
+          <div class="feature-row anim delay-1">
+            <div class="ico">⚛️</div>
+            <div>
+              <h4>Quantum Readiness</h4>
+              <p>Prepare your infrastructure and algorithms for the post-classical computing era before it arrives.</p>
+            </div>
+          </div>
+          <div class="feature-row anim delay-2">
+            <div class="ico">📊</div>
+            <div>
+              <h4>Data Engineering at Scale</h4>
+              <p>End-to-end data pipelines, warehouse design, and analytics systems that actually scale.</p>
+            </div>
+          </div>
+          <div class="feature-row anim delay-3">
+            <div class="ico">🔩</div>
+            <div>
+              <h4>Custom Software Solutions</h4>
+              <p>Bespoke software engineered for performance, reliability and long-term maintainability.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DOMAINS -->
+  <section class="section domains-section">
+    <div class="container">
+      <div style="max-width: 600px; margin-bottom: 56px;">
+        <div class="label">Our Domains</div>
+        <h2 class="section-title">Four pillars of deep-tech excellence</h2>
+        <p class="section-sub">EigenZ specialises across the most consequential technology domains shaping the next decade of industry.</p>
+      </div>
+      <div class="grid-4">
+        <div class="domain-card anim">
+          <div class="card-icon">🤖</div>
+          <div class="tag" style="margin-bottom: 14px;">AI / ML</div>
+          <h3>Artificial Intelligence & Machine Learning</h3>
+          <p style="margin-top: 10px;">From NLP and computer vision to reinforcement learning and model deployment at production scale.</p>
+        </div>
+        <div class="domain-card anim delay-1">
+          <div class="card-icon">⚛️</div>
+          <div class="tag" style="margin-bottom: 14px;">Quantum</div>
+          <h3>Quantum Computing</h3>
+          <p style="margin-top: 10px;">Algorithm design, quantum simulation, hybrid classical-quantum architectures, and error mitigation strategies.</p>
+        </div>
+        <div class="domain-card anim delay-2">
+          <div class="card-icon">📈</div>
+          <div class="tag" style="margin-bottom: 14px;">Data</div>
+          <h3>Data Engineering & Analytics</h3>
+          <p style="margin-top: 10px;">Streaming pipelines, data lake architecture, BI dashboards, and advanced statistical modelling.</p>
+        </div>
+        <div class="domain-card anim delay-3">
+          <div class="card-icon">💻</div>
+          <div class="tag" style="margin-bottom: 14px;">Software</div>
+          <h3>Custom Software Solutions</h3>
+          <p style="margin-top: 10px;">Enterprise-grade software design — backends, APIs, distributed systems, and embedded platforms.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="section" style="background: var(--clr-surface);">
+    <div class="container">
+      <div style="text-align: center; max-width: 520px; margin: 0 auto 64px;">
+        <div class="label" style="justify-content: center;">Our Process</div>
+        <h2 class="section-title anim">How we work with you</h2>
+        <p class="section-sub" style="margin: 12px auto 0;" class="anim delay-1">A structured, transparent engagement model from first conversation to live deployment.</p>
+      </div>
+      <div class="process-steps">
+        <div class="step anim">
+          <div class="step-num">01</div>
+          <h4>Discovery</h4>
+          <p>Deep-dive into your problem space, current stack, and strategic goals.</p>
+        </div>
+        <div class="step anim delay-1">
+          <div class="step-num">02</div>
+          <h4>Architecture</h4>
+          <p>Design robust, scalable technical blueprints tailored to your constraints.</p>
+        </div>
+        <div class="step anim delay-2">
+          <div class="step-num">03</div>
+          <h4>Engineering</h4>
+          <p>Agile build cycles with rigorous testing and continuous client visibility.</p>
+        </div>
+        <div class="step anim delay-3">
+          <div class="step-num">04</div>
+          <h4>Deployment</h4>
+          <p>CI/CD pipelines, monitoring, documentation and production handoff.</p>
+        </div>
+        <div class="step anim delay-4">
+          <div class="step-num">05</div>
+          <h4>Support</h4>
+          <p>Long-term partnership for scaling, iteration, and ongoing optimisation.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section-sm">
+    <div class="container">
+      <div class="cta-banner anim">
+        <div>
+          <h2>Ready to solve your hardest tech problems?</h2>
+          <p>Talk to our experts and get a free technical assessment of your challenge.</p>
+        </div>
+        <div class="cta-banner-actions">
+          <a href="contact.html" class="btn btn-white">Start a Conversation →</a>
+          <a href="solutions.html" class="btn btn-ghost-white">View Solutions</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="nav-logo">
+            <div class="logo-mark"></div>
+            <span class="logo-text">Eigen<span>Z</span></span>
+          </a>
+          <p>Deep technology solutions for forward-thinking organisations. AI, Quantum, Data, and Software — engineered with precision.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="about.html#team">Our Team</a></li>
+            <li><a href="about.html#mission">Mission</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Offerings</h4>
+          <ul>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="solutions.html">Solutions</a></li>
+            <li><a href="contact.html">Consulting</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Connect</h4>
+          <ul>
+            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="mailto:hello@eigenz.in">hello@eigenz.in</a></li>
+            <li><a href="#">LinkedIn</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2025 EigenZ Solutions. All rights reserved.</span>
+        <div class="socials">
+          <a href="#" title="LinkedIn">in</a>
+          <a href="#" title="GitHub">gh</a>
+          <a href="#" title="Twitter">tw</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
